@@ -1,0 +1,18 @@
+Dataset size: 2400 documents (1920 train / 480 test)
+
+Accuracy: 0.821
+              precision    recall  f1-score   support
+
+        high      0.786     0.772     0.779       171
+         low      0.947     0.929     0.938       155
+      medium      0.738     0.766     0.752       154
+
+    accuracy                          0.821       480
+   macro avg      0.824     0.822     0.823       480
+weighted avg      0.822     0.821     0.822       480
+
+Confusion matrix (rows = true, cols = predicted):
+        high  low  medium
+high     132    1      38
+low        7  144       4
+medium    29    7     118

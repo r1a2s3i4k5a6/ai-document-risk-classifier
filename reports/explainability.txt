@@ -1,0 +1,30 @@
+
+Top words signalling 'HIGH' risk:
+  exclusive  (weight: 1.90)
+  rights  (weight: 1.65)
+  territory  (weight: 1.50)
+  change  (weight: 1.49)
+  damages  (weight: 1.40)
+  ownership  (weight: 1.39)
+  section  (weight: 1.35)
+  title  (weight: 1.32)
+
+Top words signalling 'LOW' risk:
+  laws  (weight: 1.95)
+  llc  (weight: 1.87)
+  date  (weight: 1.67)
+  agreement  (weight: 1.63)
+  agreement shall  (weight: 1.63)
+  collectively  (weight: 1.52)
+  governed  (weight: 1.47)
+  day  (weight: 1.47)
+
+Top words signalling 'MEDIUM' risk:
+  insurance  (weight: 1.69)
+  audit  (weight: 1.67)
+  shall  (weight: 1.48)
+  written  (weight: 1.39)
+  records  (weight: 1.29)
+  year  (weight: 1.27)
+  reasonable  (weight: 1.16)
+  prior  (weight: 1.14)
