@@ -11,7 +11,18 @@ the words that drove the prediction, and recommends a review action
 - TF-IDF (words and 2-word phrases) + Logistic Regression classifier
 - Explainability: shows the top words behind each prediction
 - Tiered review policy instead of one flat confidence cutoff
-- Streamlit dashboard
+- **Upload a PDF, Word or text file**: text is extracted, cleaned, split into
+  clauses, and every clause is scored (riskiest first, results downloadable as CSV)
+- **Flagged documents dashboard**: clauses sent to human review, plus class-wise
+  precision / recall / F1
+- Streamlit app with three tabs: Check a clause, Upload a document, Flagged documents
+## Sample documents
+
+- `sample_documents/sample_contract.*`: a small made-up contract (PDF, DOCX, TXT)
+  for quick testing
+- `sample_documents/edgar_services_agreement.pdf`: a real public contract from
+  SEC EDGAR (EOS Inc., S-8 filing, Exhibit 10.1).
+  Source: https://www.sec.gov/Archives/edgar/data/1651958/000157587223001420/pl020_ex10-1.htm
 
 ## Data
 
@@ -37,13 +48,16 @@ Each clause category is mapped to a risk level (see
 ```
 collect_dataset.py          # collects CUAD clauses and assigns risk levels
 train_risk_classifier.py    # trains, evaluates, explains, saves the model
-app.py                      # Streamlit dashboard
+app.py                      # Streamlit dashboard (3 tabs)
+document_utils.py           # PDF/DOCX/TXT extraction, cleaning, clause splitting, scoring
+sample_documents/           # small contracts (PDF, DOCX, TXT) to try the upload tab
 RISK_CATEGORIES.md          # risk definitions and category mapping
 data/real_documents.csv     # collected dataset (2,400 clauses)
 models/                     # trained classifier
 reports/                    # evaluation, explainability, flagged documents
 generate_documents.py       # early synthetic prototype data (not used for the final model)
 ```
+
 
 ## Run it
 
@@ -99,11 +113,17 @@ confidence alone is not enough:
   Liability". The mapping is a proposed policy, not legal advice.
 - The model reads words, not meaning, so it can miss negation or context.
 - English commercial contracts only.
+- Scanned (image-only) PDFs are not supported because there is no OCR step.
+- Clause splitting uses simple rules (blank lines, numbered clauses, sentence
+  length), so unusual layouts may be split imperfectly.
 - Many predictions go to human review (305 of 480). The 0.60 confidence
   threshold could be tuned.
+  - On a full real contract, most clauses are flagged for review. The model learned
+  only the clause types in CUAD, so recitals and general boilerplate get low
+  confidence and are sent to a human. A "none of the above" class would reduce this.
 
 ## Next steps
 
 - Use a transformer model (for example, a legal-domain BERT)
 - Tune the confidence threshold using the cost of each type of mistake
-- Upload PDF or Word files and score them clause by clause
+- OCR for scanned PDFs (currently only PDFs with a text layer are supported)

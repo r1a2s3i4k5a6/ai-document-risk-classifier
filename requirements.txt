@@ -3,3 +3,5 @@ scikit-learn
 joblib
 streamlit
 numpy
+pypdf
+python-docx
