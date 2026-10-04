@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+.streamlit/secrets.toml
+CUAD_v1.json
+CUAD_v1.zip
+CUAD_v1/
